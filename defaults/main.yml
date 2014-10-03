@@ -1,5 +1,5 @@
 ---
 # defaults file for deploy_user
 deploy_user_name: deploy
-deploy_user_ssh_priv_key_path: lookup('file', '~/.ssh/id_rsa.pub')
-deploy_groups: webapp, www-data
+deploy_user_ssh_priv_key_path: project.deploy
+deploy_groups: www-data

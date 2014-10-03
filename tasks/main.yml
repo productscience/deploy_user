@@ -2,10 +2,20 @@
 # tasks file for deploy_user
 
 - name: create a deploy user
-  user: name={{ deploy_user_name}}
+  user: >
+    name={{ deploy_user_name}}
     shell=/bin/bash
-    groups={{deploy_groups}}
+    groups={{ deploy_groups }}
 
-- name: add public key for current user
-  authorized_key: user={{ deploy_user_name}}
-    key: {{deploy_user_ssh_priv_key_path}}
+- name: add ssh directory for deploy user
+  file: >
+    path=/home/{{ app }}/.ssh
+    owner={{  deploy_user_name }}
+    state=directory
+    mode=700
+
+- name: add deploy key for deploy user
+  copy: >
+    src={{ deploy_user_ssh_priv_key_path }}
+    dest=/home/{{ app }}/.ssh/deploy
+    mode=600
