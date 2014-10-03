@@ -1,7 +1,7 @@
 Deploy User
 ========
 
-This role creates a deploy user, to ease deployment when using with deploy keys on services like [Github], or [Bitbucket].
+This role creates a deploy user, to ease deployment when using with deploy keys on services like Github, or Bitbucket. I created this after initially finding the deployment process with slightly fiddly, and wanting ot avoid messing around with `sudo` and ssh environment variables just to deploy an web app.
 
 This is written with the assumption it is being used on Debian, or Debian based operating systems, like Ubuntu.
 
@@ -44,15 +44,21 @@ You would typically use this before using the Ansible `git` module, to put the d
   roles:
      - productscience.deploy_user
 
-- tasks: fetch code from github repo, using the deploy key
-  git: repo=git@github.com:productscience/some_project.git
-       dest=/var/www/{{ app_name }}
-       accept_hostkey=True
-       version={{ git_branch }}
-       key_file=/home/{{ deploy_user_name }}/.ssh/deploy
-  tags:
-    - git
+- tasks:
+
+  - name: fetch code from github repo, using the deploy key
+    git: repo=git@github.com:productscience/some_project.git
+         dest=/var/www/{{ app_name }}
+         accept_hostkey=True
+         version={{ git_branch }}
+         key_file=/home/{{ deploy_user_name }}/.ssh/deploy
+
+  - name: gracefully reload app server with new code
+    service: name={{appname}} state=reloaded
+
 ```
+
+This would ssh into github using the deploy user's private key, and checkout the desired git branch into `/var/www/{{ app_name }}`, before the reloading the server to serve the latest version of the application to users.
 
 
 License
