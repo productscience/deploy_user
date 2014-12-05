@@ -3,7 +3,7 @@
 
 - name: create a deploy user
   user: >
-    name={{ deploy_user_name}}
+    name={{ deploy_user_name }}
     shell=/bin/bash
     groups={{ deploy_groups }}
 
@@ -17,5 +17,5 @@
 - name: add deploy key for deploy user
   copy: >
     src={{ deploy_user_ssh_priv_key_path }}
-    dest=/home/{{ app }}/.ssh/deploy
+    dest=/home/{{ deploy_user_name }}/.ssh/deploy
     mode=600
