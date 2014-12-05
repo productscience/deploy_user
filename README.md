@@ -1,7 +1,7 @@
 Deploy User
 ========
 
-This role creates a deploy user, to ease deployment when using with deploy keys on services like Github, or Bitbucket. I created this after initially finding the deployment process with slightly fiddly, and wanting ot avoid messing around with `sudo` and ssh environment variables just to deploy an web app.
+This role creates a deploy user, to ease deployment when using with deploy keys on services like Github, or Bitbucket. I created this after initially finding the deployment process with slightly fiddly, and wanting to avoid messing around with `sudo` and ssh environment variables just to deploy an web app.
 
 This is written with the assumption it is being used on Debian, or Debian based operating systems, like Ubuntu.
 
