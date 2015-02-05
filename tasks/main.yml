@@ -1,6 +1,12 @@
 ---
 # tasks file for deploy_user
 
+- name: create our deploy groups
+  group: >
+    name={{ item }}
+    state=present
+  with_items: deploy_groups
+
 - name: create a deploy user
   user: >
     name={{ deploy_user_name }}
