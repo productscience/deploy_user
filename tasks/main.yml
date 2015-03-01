@@ -11,7 +11,7 @@
   user: >
     name={{ deploy_user_name }}
     shell=/bin/bash
-    groups={{ deploy_groups }}.join(',')
+    groups={{ deploy_groups | join(',')}}
 
 - name: add ssh directory for deploy user
   file: >
