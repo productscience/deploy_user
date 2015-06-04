@@ -25,3 +25,6 @@
     src={{ deploy_user_ssh_priv_key_path }}
     dest=/home/{{ deploy_user_name }}/.ssh/deploy
     mode=600
+    owner={{ deploy_user_name}}
+    group={{ deploy_user_name }}
+  sudo: yes
