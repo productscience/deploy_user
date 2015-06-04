@@ -17,13 +17,13 @@ The following variables are set in defaults.yml for the role:
 
 ```yaml
 deploy_user_name: deploy
-deploy_user_ssh_priv_key_path: lookup('file', '~/.ssh/id_rsa.pub')
+deploy_user_ssh_priv_key_path: lookup('file', '~/.ssh/id_rsa')
 deploy_groups: webapp, www-data
 ```
 
 Explaining these roles:
 
-- **deployusername** is the name of the deploy to create. By default they have a home directory
+- **deploy_user_name** is the name of the deploy to create. By default they have a home directory
 - **deploy_user_ssh_priv_key_path** is the path to the private-key for the deploy user. The corresponding public key would be entered into the github project at https://github.com/{username}/{project}/settings/keys.
 - **deploy_groups**: typically the same group as a web server, or developers, to allow them to ssh in to troubleshoot if necessary.
 
